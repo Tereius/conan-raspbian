@@ -15,16 +15,15 @@ class RaspbianConan(ConanFile):
     homepage = "https://github.com/raspberrypi/tools"
     default_user = "tereius"
     default_channel = "stable"
-    #exports = ["LICENSE", "android.toolchain.conan.cmake"]
+    exports = ["raspbian.toolchain.cmake"]
     #short_paths = True
     #no_copy_source = True
     #options = {"makeStandalone": [True, False]}
     #default_options = "makeStandalone=True"
-    settings = {"os_build": ["Linux", "Macos"],
-                "arch_build": ["x86", "x86_64"],
+    settings = {
                 "compiler": ["gcc"],
                 "os": ["Linux"],
-                "arch": ["armv6", "armv6hf"]}
+                "arch": "armv6"}
 
     def source(self):
         self.run("git clone https://github.com/raspberrypi/tools.git")
@@ -75,6 +74,7 @@ class RaspbianConan(ConanFile):
     def package_info(self):
         package = self.package_folder
         toolchain = os.path.join(package, 'tools', 'arm-bcm2708', self.toolchain)
+        cmake_toolchain = os.path.join(package, 'raspbian.toolchain.cmake')
         toolchain_bin = os.path.join(toolchain, 'bin')
 
         self.output.info('Creating RASPBIAN_ROOT environment variable: %s' % package)
@@ -87,6 +87,9 @@ class RaspbianConan(ConanFile):
         self.env_info.PATH.append(toolchain_bin)
         
         sysroot = os.path.join(toolchain, self.toolchain, 'sysroot')
+        
+        self.output.info('Creating CONAN_CMAKE_TOOLCHAIN_FILE environment variable: %s' % cmake_toolchain)
+        self.env_info.CONAN_CMAKE_TOOLCHAIN_FILE = cmake_toolchain
         
         self.output.info('Creating CONAN_CMAKE_FIND_ROOT_PATH environment variable: %s' % sysroot)
         self.env_info.CONAN_CMAKE_FIND_ROOT_PATH = sysroot
