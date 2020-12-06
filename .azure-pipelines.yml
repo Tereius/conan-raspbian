@@ -25,6 +25,8 @@ jobs:
         CONAN_BASE_PROFILE_OS: "Linux",
         CONAN_BASE_PROFILE_ARCH: "armv6",
         CONAN_BASE_PROFILE_COMPILER: "gcc",
+        CONAN_BASE_PROFILE_COMPILER_VERSION: "8.3",
+        CONAN_BASE_PROFILE_COMPILER_LIBCXX: "libstdc++11",
         CONAN_BASE_PROFILE_BUILDTYPE: "Release"
       }
 
