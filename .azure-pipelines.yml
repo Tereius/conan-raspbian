@@ -9,7 +9,7 @@ jobs:
 - job: Build
   strategy:
     matrix:
-      Windows:
+      Linux:
         imageName: "ubuntu-16.04"
         conanBuildOS: "Linux"
   pool:
@@ -22,7 +22,10 @@ jobs:
         CONAN_USERNAME: "tereius",
         CONAN_CHANNEL: "stable",
         CONAN_REMOTES: "https://api.bintray.com/conan/tereius/public-conan",
-        CONAN_BASE_PROFILE_OSBUILD: "$(conanBuildOS)"
+        CONAN_BASE_PROFILE_OS: "Linux"
+        CONAN_BASE_PROFILE_ARCH: "armv6"
+        CONAN_BASE_PROFILE_COMPILER: "gcc"
+        CONAN_BASE_PROFILE_BUILDTYPE: "release"
       }
 
 - job: Upload
