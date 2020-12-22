@@ -27,7 +27,8 @@ jobs:
         CONAN_BASE_PROFILE_COMPILER: "gcc",
         CONAN_BASE_PROFILE_COMPILER_VERSION: "8.3",
         CONAN_BASE_PROFILE_COMPILER_LIBCXX: "libstdc++11",
-        CONAN_BASE_PROFILE_BUILDTYPE: "Release"
+        CONAN_BASE_PROFILE_BUILDTYPE: "Release",
+        CONAN_SKIP_BROKEN_SYMLINKS_CHECK: "True"
       }
 
 - job: Upload
@@ -44,5 +45,6 @@ jobs:
         CONAN_CHANNEL: "stable",
         CONAN_UPLOAD: "https://api.bintray.com/conan/tereius/public-conan",
         CONAN_LOGIN_USERNAME: "tereius",
-        CONAN_PASSWORD: "$(secret)"
+        CONAN_PASSWORD: "$(secret)",
+        CONAN_SKIP_BROKEN_SYMLINKS_CHECK: "True"
       }
