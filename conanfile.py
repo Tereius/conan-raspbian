@@ -5,6 +5,8 @@ from conans import ConanFile, tools
 import os
 
 
+os.environ["CONAN_SKIP_BROKEN_SYMLINKS_CHECK"] = "True"
+
 class RaspbianConan(ConanFile):
     name = "raspbian"
     version = "2020-02-14"
