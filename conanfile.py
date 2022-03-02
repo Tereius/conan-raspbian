@@ -26,6 +26,7 @@ class RaspbianConan(ConanFile):
         tools.replace_in_file("Toolchain-rpi.cmake",
                               "set(CMAKE_PREFIX_PATH \"${CMAKE_PREFIX_PATH};${SYSROOT_PATH}/usr/lib/${TOOLCHAIN_HOST}\")",
                               "set(CMAKE_PREFIX_PATH \"${CMAKE_PREFIX_PATH};${SYSROOT_PATH}/usr/lib/${TOOLCHAIN_HOST}\")\nset(CMAKE_PREFIX_PATH \"${CMAKE_PREFIX_PATH};${SYSROOT_PATH}/opt/vc\")")
+        tools.replace_in_file("Toolchain-rpi.cmake", "set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)", "set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE BOTH)")
         tools.get("https://github.com/Pro/raspi-toolchain/releases/download/v1.0.1/raspi-toolchain.tar.gz")
 
     @property
